@@ -1,6 +1,9 @@
 name: Deploy Development
 
-on: [push]
+on:
+  push:
+    branches:
+      - develop
 
 # Needed for nx-set-shas when run on the main branch
 permissions:
