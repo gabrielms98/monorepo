@@ -25,8 +25,8 @@ jobs:
       - run: git branch --track main origin/main
 
       - run: |
-          npx nx affected -t lint,test --parallel=3
-          npx nx affected build,deploy --parallel=3 --exclude='*-e2e'
+          npx nx affected --base=develop -t lint,test --parallel=3
+          npx nx affected --base=develop build,deploy --parallel=3 --exclude='*-e2e'
         env:
           ENV: development
           TEST: app
