@@ -27,4 +27,3 @@ jobs:
       - run: npx nx affected --target=lint,test --parallel=3 && npx nx affected --target=build,deploy --skipNxCache --exclude='*-e2e' --parallel=3
         env:
           ENV: development
-          TEST: app

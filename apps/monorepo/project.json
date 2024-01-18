@@ -12,7 +12,7 @@
       "options": {
         "commands": [
           {
-            "command": "touch test.txt"
+            "command": "APP=monorepo ./scripts/deploy.sh"
           }
         ]
       }
