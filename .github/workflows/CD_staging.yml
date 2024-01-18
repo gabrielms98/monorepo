@@ -3,7 +3,7 @@ name: Deploy Staging
 on:
   create:
     branches:
-      - release/*
+      - release
 
 jobs:
   test:
