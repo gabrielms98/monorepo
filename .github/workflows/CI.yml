@@ -1,7 +1,6 @@
 name: CI
 on:
   push:
-  pull_request:
 
 # Needed for nx-set-shas when run on the main branch
 permissions:
