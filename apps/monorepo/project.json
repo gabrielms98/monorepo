@@ -11,10 +11,10 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          {
-            "command": "APP=monorepo ./scripts/deploy.sh"
-          }
-        ]
+          "chmod +x ./scripts/deploy.sh",
+          "APP=monorepo ./scripts/deploy.sh"
+        ],
+        "parallel": false
       }
     },
     "build": {
