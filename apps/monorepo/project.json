@@ -6,6 +6,17 @@
   "sourceRoot": "apps/monorepo/src",
   "tags": [],
   "targets": {
+    "deploy": {
+      "dependsOn": ["test", "build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "chmod +x ./scripts/deploy.sh",
+          "APP=monorepo ./scripts/deploy.sh"
+        ],
+        "parallel": false
+      }
+    },
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
