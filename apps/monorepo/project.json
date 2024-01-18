@@ -7,8 +7,15 @@
   "tags": [],
   "targets": {
     "deploy": {
-      "dependsOn": "build",
-      "command": "APP=monorepo ./scripts/deploy.sh"
+      "dependsOn": ["test", "build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "touch test.txt"
+          }
+        ]
+      }
     },
     "build": {
       "executor": "@angular-devkit/build-angular:application",
