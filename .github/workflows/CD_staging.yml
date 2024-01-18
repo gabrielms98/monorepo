@@ -10,8 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Cache node_modules
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - uses: nrwl/nx-set-shas@v3
+      # This line is needed for nx affected to work when CI is running on a PR
+      - run: git branch --track main origin/main
 
-      - name: Deploy
-        run: echo "Deploying to staging..."
+      - run: npx nx affected --target=lint,test --parallel=3 && npx nx affected --target=build,deploy --skipNxCache --exclude='*-e2e' --parallel=3
+        env:
+          ENV: staging
