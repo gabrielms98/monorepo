@@ -1,9 +1,6 @@
 name: Test Action
 
-on:
-  push:
-    branches:
-      - develop
+on: [push]
 
 # Needed for nx-set-shas when run on the main branch
 permissions:
