@@ -10,6 +10,10 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
+  it('should be a fake test', () => {
+    expect(true).toBeTruthy();
+  });
+
   // it('should render title', () => {
   //   const fixture = TestBed.createComponent(AppComponent);
   //   fixture.detectChanges();
