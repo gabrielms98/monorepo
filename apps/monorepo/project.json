@@ -48,16 +48,16 @@
           "outputHashing": "all",
           "fileReplacements": [
             {
-              "replace": "src/environments/environment.ts",
-              "with": "src/environments/environment.production.ts"
+              "replace": "environments/environment.ts",
+              "with": "environments/environment.production.ts"
             }
           ]
         },
         "staging": {
           "fileReplacements": [
             {
-              "replace": "src/environments/environment.ts",
-              "with": "src/environments/environment.staging.ts"
+              "replace": "environments/environment.ts",
+              "with": "environments/environment.staging.ts"
             }
           ],
           "outputHashing": "all"
@@ -68,10 +68,15 @@
           "sourceMap": true,
           "fileReplacements": [
             {
-              "replace": "src/environments/environment.ts",
-              "with": "src/environments/environment.development.ts"
+              "replace": "environments/environment.ts",
+              "with": "environments/environment.development.ts"
             }
           ]
+        },
+        "local": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
         }
       },
       "defaultConfiguration": "production"
@@ -83,10 +88,10 @@
           "buildTarget": "monorepo:build:production"
         },
         "development": {
-          "buildTarget": "monorepo:build:development"
+          "buildTarget": "monorepo:build:local"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "local"
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",

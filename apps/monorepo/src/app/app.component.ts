@@ -3,6 +3,7 @@ import { NxWelcomeComponent } from './nx-welcome.component';
 import { connect, type Socket } from 'socket.io-client';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from 'environments';
 
 @Component({
   standalone: true,
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
   socket: Socket = connect('ws://localhost:8080/chat');
 
   ngOnInit(): void {
-    console.log(process.env['NODE_ENV']);
+    console.log(environment.apiUrl);
     this.socket.emit('join', { name: 'test' });
 
     this.socket.on('message', (data) => {
