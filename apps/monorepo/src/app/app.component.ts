@@ -1,15 +1,37 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
 import { NxWelcomeComponent } from './nx-welcome.component';
+import { connect, type Socket } from 'socket.io-client';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [NxWelcomeComponent, CommonModule, FormsModule],
   selector: 'monorepo-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'monorepo';
   another = 'test';
+  message = '';
+  messages = signal<string[]>([]);
+  socket: Socket = connect('ws://localhost:8080/chat');
+
+  ngOnInit(): void {
+    console.log(process.env['NODE_ENV']);
+    this.socket.emit('join', { name: 'test' });
+
+    this.socket.on('message', (data) => {
+      console.log(data);
+      this.messages.update((messages) => [...messages, data.message]);
+    });
+
+    throw new Error('test');
+  }
+
+  submit() {
+    this.socket.emit('message', { message: this.message });
+    this.message = '';
+  }
 }

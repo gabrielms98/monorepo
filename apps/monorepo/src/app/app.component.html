@@ -1,2 +1,13 @@
-<monorepo-nx-welcome></monorepo-nx-welcome> <router-outlet></router-outlet>
-aorisetnar
+<main>
+  @for (message of messages(); track message) {
+  <div>{{ message }}</div>
+  } @empty { No messages yet... }
+
+  <input
+    type="text"
+    [value]="message"
+    (keydown.enter)="submit()"
+    [(ngModel)]="message"
+  />
+  <button (click)="submit()">Send</button>
+</main>
