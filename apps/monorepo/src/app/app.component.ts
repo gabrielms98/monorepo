@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       this.messages.update((messages) => [...messages, data.message]);
     });
 
-    throw new Error('test');
+    // throw new Error('test');
   }
 
   submit() {
