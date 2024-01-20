@@ -22,7 +22,7 @@ jobs:
       - uses: nrwl/nx-set-shas@v3
 
       - run: |
-        npx nx affected --target=lint,test --parallel=3
-        npx nx affected --target=build,deploy --skipNxCache --exclude='*-e2e' --parallel=3 --configuration=production
+          npx nx affected --target=lint,test --parallel=3
+          npx nx affected --target=build,deploy --skipNxCache --exclude='*-e2e' --parallel=3 --configuration=production
         env:
           ENV: production
