@@ -1,10 +1,34 @@
-import { ApplicationConfig, ErrorHandler } from '@angular/core';
+import {
+  ApplicationConfig,
+  ErrorHandler,
+  Injectable,
+  OnDestroy,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
+import { Subject } from 'rxjs/internal/Subject';
+import { throttleTime } from 'rxjs/internal/operators/throttleTime';
 
-class MyErrorHandling implements ErrorHandler {
-  handleError(error: unknown): void {
-    console.log(error);
+@Injectable({ providedIn: 'root' })
+class MyErrorHandling implements ErrorHandler, OnDestroy {
+  readonly THROTTLE_TIME = 1_000;
+  private error = new Subject<Error>();
+  private error$ = this.error
+    .asObservable()
+    .pipe(throttleTime(this.THROTTLE_TIME));
+
+  constructor() {
+    this.error$.subscribe((error) => {
+      console.log(error);
+    });
+  }
+
+  handleError(error: Error): void {
+    this.error.next(error);
+  }
+
+  ngOnDestroy(): void {
+    this.error.complete();
   }
 }
 

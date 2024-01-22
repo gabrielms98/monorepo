@@ -84,10 +84,7 @@
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
-        "production": {
-          "buildTarget": "monorepo:build:production"
-        },
-        "development": {
+        "local": {
           "buildTarget": "monorepo:build:local"
         }
       },
