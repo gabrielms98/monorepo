@@ -20,6 +20,7 @@ class MyErrorHandling implements ErrorHandler, OnDestroy {
   constructor() {
     this.error$.subscribe((error) => {
       console.log(error);
+      // TODO: send error to server
     });
   }
 
